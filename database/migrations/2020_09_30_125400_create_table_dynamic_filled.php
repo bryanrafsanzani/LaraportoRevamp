@@ -15,9 +15,8 @@ class CreateTableDynamicFilled extends Migration
     {
         Schema::create('dynamic_filled', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('user_id')->unsigned();
             $table->BigInteger('dynamic_form_id')->unsigned();
-            $table->sort('groups');
+            $table->integer('groups');
             $table->text('value')->nullable();
             $table->timestamps();
         });

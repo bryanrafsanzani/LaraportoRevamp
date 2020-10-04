@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class DynamicFill extends Model
 {
     use HasFactory;
+
+    protected $table = "dynamic_forms";
+    protected $primaryKey = "id";
+
+    protected $fillable = [
+        'id',
+        'dynamic_form_id',
+        'groups',
+        'value',
+        'created_at',
+        'updated_at',
+        ];
 }

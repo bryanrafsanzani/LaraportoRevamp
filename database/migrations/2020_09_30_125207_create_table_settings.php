@@ -20,8 +20,6 @@ class CreateTableSettings extends Migration
             $table->string('value')->nullable();
             $table->string('default_value')->nullable();
             $table->string('description')->default('-');
-            $table->unsignedInteger('created_by')->nullable();
-            $table->unsignedInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }
