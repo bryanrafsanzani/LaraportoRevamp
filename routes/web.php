@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('cms._layout.app');
     return view('welcome');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+
 });

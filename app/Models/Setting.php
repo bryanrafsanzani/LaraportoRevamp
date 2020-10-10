@@ -20,5 +20,5 @@ class Setting extends Model
         'description',
         'created_at',
         'updated_at',
-        ];
+    ];
 }
