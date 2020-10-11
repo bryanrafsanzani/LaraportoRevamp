@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'auth'], function() {
+// Route::group(['middleware' => 'auth'], function() {
 
     Route::prefix('/')->group(function () {
 
@@ -27,6 +27,12 @@ Route::group(['middleware' => 'auth'], function() {
             Route::post('/update', 'SettingController@update')->name('setting-update');
             Route::delete('/delete/{id}', 'SettingController@delete')->name('setting-delete');
         });
+
+        Route::prefix('/log')->group(function () {
+            Route::get('/', 'LogController@index')->name('log-index');
+            Route::get('/datatables', 'LogController@datatables')->name('log-datatables');
+        });
+
     });
 
-});
+// });
