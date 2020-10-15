@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SettingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +23,7 @@ Route::get('/', function () {
     Route::prefix('/')->group(function () {
 
         Route::prefix('settings')->group(function () {
-            Route::get('/', 'SettingController@index')->name('setting-index');
+            Route::get('/', [SettingController::class, 'index'])->name('setting-index');
             Route::post('/update', 'SettingController@update')->name('setting-update');
             Route::delete('/delete/{id}', 'SettingController@delete')->name('setting-delete');
         });
