@@ -9,7 +9,7 @@ class SettingController extends Controller
 {
     public function index(Request $request)
     {
-
+        return view('cms.setting.index');
     }
 
     public function update(Request $request)
