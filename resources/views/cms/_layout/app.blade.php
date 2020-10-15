@@ -28,7 +28,7 @@
     <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
     <meta name="author" content="ThemePixels">
 
-    <title>Slim Responsive Bootstrap 4 Admin Template</title>
+    <title>@yield('title', ' ') - {{ $appTitle }}</title>
 
     <!-- vendor css -->
     <link href="{{ asset('vendor/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
@@ -48,19 +48,13 @@
 
       <div class="slim-mainpanel">
         <div class="container">
-          <div class="slim-pageheader">
-            <ol class="breadcrumb slim-breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
-            </ol>
-            <h6 class="slim-pagetitle">Blank Page</h6>
-          </div><!-- slim-pageheader -->
-
-        </div><!-- container -->
+          @yield('sub-title')
+          @yield('content')
+        </div>
 
         @include('cms._layout.footer')
-      </div><!-- slim-mainpanel -->
-    </div><!-- slim-body -->
+      </div>
+    </div>
 
     <script src="{{ asset('vendor/lib/jquery/js/jquery.js') }}"></script>
     <script src="{{ asset('vendor/lib/popper.js/js/popper.js') }}"></script>

@@ -9,7 +9,7 @@
             <a href="" class="sidebar-nav-link"><i class="icon ion-ios-home-outline"></i> Logs</a>
           </li>
           <li class="sidebar-nav-item">
-            <a href="page-messages.html" class="sidebar-nav-link"><i class="icon ion-ios-chatboxes-outline"></i> Settings</a>
+            <a href="{{ route('setting-index') }}" class="sidebar-nav-link"><i class="icon ion-ios-chatboxes-outline"></i> Settings</a>
           </li>
           <li class="sidebar-nav-item with-sub">
             <a href="" class="sidebar-nav-link"><i class="icon ion-ios-book-outline"></i> Media</a>
