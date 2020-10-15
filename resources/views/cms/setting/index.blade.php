@@ -19,10 +19,10 @@
 
     <div class="row form-group form-group">
         <div class="col-lg-2 mg-t-10 mg-lg-t-0">
-            <label for="">Title</label>
+            <label for="">Application Name</label>
         </div>
         <div class="col-lg-7 mg-t-10 mg-lg-t-0">
-            <input class="form-control" placeholder="Input box" type="text">
+            <input name="setting[app_name]" value="{{ \App\Models\Setting::fetchValue('app_name') }}" class="form-control" placeholder="Input" type="text">
         </div>
     </div>
     <div class="row form-group">
@@ -30,19 +30,71 @@
             <label for="">Title</label>
         </div>
         <div class="col-lg-7 mg-t-10 mg-lg-t-0">
-            <input class="form-control" placeholder="Input box" type="text">
+            <input name="setting[title]" value="{{ \App\Models\Setting::fetchValue('title') }}" class="form-control" placeholder="Input" type="text">
         </div>
     </div>
     <div class="row form-group">
         <div class="col-lg-2 mg-t-10 mg-lg-t-0">
-            <label for="">Title</label>
+            <label for="">Icon Web</label>
         </div>
         <div class="col-lg-7 mg-t-10 mg-lg-t-0">
-            <input class="form-control" placeholder="Input box" type="text">
+            <input class="form-control" placeholder="Input" type="file">
         </div>
     </div>
+    <div class="row form-group">
+        <div class="col-lg-2 mg-t-10 mg-lg-t-0">
+            <label for="">Footer Cms</label>
+        </div>
+        <div class="col-lg-7 mg-t-10 mg-lg-t-0">
+            <textarea name="" id="" cols="5" rows="3" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-lg-2 mg-t-10 mg-lg-t-0">
+            <label for="">Footer Public</label>
+        </div>
+        <div class="col-lg-7 mg-t-10 mg-lg-t-0">
+            <textarea name="" id="" cols="5" rows="3" class="form-control"></textarea>
+        </div>
+    </div>
+</div>
+<br>
+<div class="section-wrapper">
+    <label class="section-title">Contact Web</label>
+    <p class="mg-b-20 mg-sm-b-40">People to get connected with you</p>
 
-
+    <div class="row form-group form-group">
+        <div class="col-lg-2 mg-t-10 mg-lg-t-0">
+            <label for="">Email</label>
+        </div>
+        <div class="col-lg-7 mg-t-10 mg-lg-t-0">
+            <input class="form-control" placeholder="Input" type="text">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-lg-2 mg-t-10 mg-lg-t-0">
+            <label for="">Phone Number</label>
+        </div>
+        <div class="col-lg-7 mg-t-10 mg-lg-t-0">
+            <input class="form-control" placeholder="Input" type="text">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-lg-2 mg-t-10 mg-lg-t-0">
+            <label for="">Linkedin</label>
+        </div>
+        <div class="col-lg-7 mg-t-10 mg-lg-t-0">
+            <input class="form-control" placeholder="Input" type="text">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-lg-2 mg-t-10 mg-lg-t-0">
+            <label for="">Current Address</label>
+        </div>
+        <div class="col-lg-7 mg-t-10 mg-lg-t-0">
+            <textarea name="" id="" cols="5" rows="3" class="form-control"></textarea>
+        </div>
+    </div>
 </div>
 @endsection
 

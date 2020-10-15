@@ -21,4 +21,13 @@ class Setting extends Model
         'created_at',
         'updated_at',
     ];
+
+    public static function fetchValue($option_name){
+        $setting = self::where('option_name', $option_name)->first();
+
+        if($setting){
+            return $setting->value;
+        }
+        return null;
+    }
 }
