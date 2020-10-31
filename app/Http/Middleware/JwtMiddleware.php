@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Exception;
+use JWTAuth;
 use Illuminate\Http\Request;
 
 class JwtMiddleware
@@ -20,11 +22,27 @@ class JwtMiddleware
             $user = JWTAuth::parseToken()->authenticate();
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                return response()->json(['status' => 'Token is Invalid']);
+                return response()->json([
+                    "code"      =>  \HttpStatus::UNAUTHORIZE,
+                    "status"    =>  false,
+                    "message"   =>  "Token is Invalid",
+                    "data"      =>  null
+                    ], \HttpStatus::UNAUTHORIZE);
+
             }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                return response()->json(['status' => 'Token is Expired']);
+                return response()->json([
+                    "code"      =>  \HttpStatus::UNAUTHORIZE,
+                    "status"    =>  false,
+                    "message"   =>  "Token is Expired",
+                    "data"      =>  null
+                    ], \HttpStatus::UNAUTHORIZE);
             }else{
-                return response()->json(['status' => 'Authorization Token not found']);
+                return response()->json([
+                    "code"      =>  \HttpStatus::UNAUTHORIZE,
+                    "status"    =>  false,
+                    "message"   =>  "Authorization Token not found",
+                    "data"      =>  null
+                    ], \HttpStatus::UNAUTHORIZE);
             }
         }
         return $next($request);
