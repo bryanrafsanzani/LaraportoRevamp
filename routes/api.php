@@ -32,7 +32,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/forgot-password', [AuthController::class, 'forgotPassword']);
     Route::get('/reset-password', [AuthController::class, 'resetPassword']);
 
-    Route::prefix('auth')->group(function () {
+    Route::middleware(['jwt.verify'])->group(function () {
 
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index']);
