@@ -230,7 +230,7 @@ return [
         // Custome
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-
+        'MessageHelper' => App\Helpers\MessageHelper::class,
+        'HttpStatus' => App\Enums\HttpStatus::class,
     ],
-
 ];
