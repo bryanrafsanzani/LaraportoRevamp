@@ -33,6 +33,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/reset-password', [AuthController::class, 'resetPassword']);
 
     Route::middleware(['jwt.verify'])->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
 
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index']);

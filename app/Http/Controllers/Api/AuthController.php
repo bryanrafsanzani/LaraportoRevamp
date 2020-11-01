@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        //
+        $this->middleware('jwt.verify')->only('logout');
     }
 
     public function login(Request $request)
@@ -51,5 +51,19 @@ class AuthController extends Controller
             "message"   =>  "Failed Login, Email or Password Wrong!",
             "data"      =>  null
             ], \HttpStatus::FORBIDDEN);
+    }
+
+    public function logout(Request $request)
+    {
+
+        \JWTAuth::invalidate($request->header('Authorization'));
+
+        return response()->json([
+            "code"      =>  \HttpStatus::OK,
+            "status"    =>  true,
+            "message"   =>  'Logout Success',
+            "data"      =>  null
+            ], \HttpStatus::OK);
+
     }
 }
