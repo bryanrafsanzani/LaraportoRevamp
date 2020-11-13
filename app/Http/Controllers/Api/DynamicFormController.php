@@ -115,4 +115,26 @@ class DynamicFormController extends Controller
             "data"      =>  null
             ], \HttpStatus::FORBIDDEN);
     }
+
+    public function delete($id)
+    {
+        $dynamicForm = DynamicForm::find($id);
+
+        if($dynamicForm){
+            $dynamicForm->delete();
+            return response()->json([
+                "code"      =>  \HttpStatus::OK,
+                "status"    =>  true,
+                "message"   =>  "Success, Data Was Deleted!",
+                "data"      =>  null
+            ], \HttpStatus::OK);
+        }
+
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  "Failed, Data not Found",
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
+    }
 }
