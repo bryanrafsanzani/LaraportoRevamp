@@ -46,6 +46,37 @@ class DynamicFormController extends Controller
             "message"   =>  "Success, data Dynamic Form was inserted!",
             "data"      =>  null
         ], \HttpStatus::OK);
-
     }
+
+    public function view(Request $request)
+    {
+        $rules     = [
+            'id'         => 'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return  \MessageHelper::unprocessableEntity($validator->messages());
+        }
+
+        $dynamicForm = DynamicForm::find($id);
+        if($dynamicForm){
+            return response()->json([
+                "code"      =>  \HttpStatus::OK,
+                "status"    =>  true,
+                "message"   =>  "Success, Data Was Found!",
+                "data"      =>  $dynamicForm
+            ], \HttpStatus::OK);
+        }
+
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  "Failed, Data not Found",
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
+    }
+
+    public function
 }

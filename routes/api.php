@@ -42,6 +42,7 @@ Route::prefix('v1')->group(function () {
         Route::prefix('setting')->group(function () {
             Route::get('/', [SettingController::class, 'index']);
             Route::post('/update', [SettingController::class, 'update']);
+            Route::post('/store', [SettingController::class, 'store']);
         });
 
         Route::prefix('media')->group(function () {
@@ -55,6 +56,8 @@ Route::prefix('v1')->group(function () {
 
         Route::prefix('dynamic-form')->group(function () {
             Route::get('/', [DynamicFormController::class, 'index']);
+            Route::post('/store', [DynamicFormController::class, 'store']);
+            Route::get('/view', [DynamicFormController::class, 'view']); //specific data
         });
 
         Route::prefix('dynamic-fill')->group(function () {
