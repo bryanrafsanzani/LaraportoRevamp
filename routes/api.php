@@ -25,7 +25,8 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
-    Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('api-reset-password');
+    Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('api-reset-password');
+    Route::post('/reset-password', [AuthController::class, 'submitResetPassword']);
 
     Route::middleware(['jwt.verify'])->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);

@@ -100,6 +100,108 @@ class AuthController extends Controller
 
     }
 
+    public function resetPassword(Request $request)
+    {
+        $rules     = [
+            'token'         => 'required|string',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return  \MessageHelper::unprocessableEntity($validator->messages());
+        }
+
+        if($request->has('token')){
+            $token = DB::table('reset_password')->where('token', $request->token)->first();
+
+            if($token){
+                $date = Carbon::parse($token->created_at);
+
+                if($date->diffInSeconds(Carbon::now()) >= 1800){//more than 30 minutes
+                    $message = 'Your Token was Expired, please request another token ';
+                }else{
+                    $user = User::where('email', $token->email)->first();
+
+                    if(!$user){
+                        $message = 'Account or Token was invalid';
+                    }else{
+
+                        return response()->json([ //after this return, redirect back and post with same url but different method
+                            "code"      =>  \HttpStatus::OK,
+                            "status"    =>  true,
+                            "message"   =>  'Success, Token is Valid',
+                            "data"      =>  null
+                            ], \HttpStatus::OK);
+                    }
+
+                }
+            }else{
+                $message = 'Token Invalid, please request another token in here <br><br><a class="btn btn-sm btn-primary" href="'.route('password-forgot').'">Request new token</a>';
+            }
+        }else{
+            $message= "Token is required";
+        }
+
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  $message,
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
+    }
+
+    public function submitResetPassword(Request $request)
+    {
+        $rules     = [
+            'token'                 => 'required|string',
+            'password'              =>  'required|string|min:8|max:190',
+            'password_confirmation' =>  'required|string|max:190|same:password'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return  \MessageHelper::unprocessableEntity($validator->messages());
+        }
+
+        $token = DB::table('reset_password')->where('token', $request->token)->first();
+
+        if($token){
+            $date = Carbon::parse($token->created_at);
+
+            if($date->diffInSeconds(Carbon::now()) >= 1800){//more than 30 minutes
+                $message = 'Your Token was Expired, please request another token ';
+            }else{
+                $user = User::where('email', $token->email)->first();
+
+                if(!$user){
+                    $message = 'Account or Token was invalid';
+                }else{
+
+                    $user->update(['password'  =>  bcrypt($request->password)]);
+                    DB::table('reset_password')->where('token', $request->token)->delete();
+
+                    return response()->json([ //after this return, redirect back and post with same url but different method
+                        "code"      =>  \HttpStatus::OK,
+                        "status"    =>  true,
+                        "message"   =>  'Success, Password was updated',
+                        "data"      =>  null
+                        ], \HttpStatus::OK);
+                }
+            }
+        }else{
+            $message = 'Token Invalid, please request another token in here <br><br><a class="btn btn-sm btn-primary" href="'.route('password-forgot').'">Request new token</a>';
+        }
+
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  $message,
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
+    }
+
     public function logout(Request $request)
     {
 
