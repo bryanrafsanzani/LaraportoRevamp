@@ -30,7 +30,7 @@ class DynamicFormController extends Controller
         $rules     = [
             'name'         => 'required|string|max:181',
             'data_type'    => 'required|in:integer,double,text,long_text,boolean,date,0',
-            'parent'       => 'required|number|max:20',
+            'parent'       => 'required|numeric|max:20',
             'required'     => 'required|in:0,1',
         ];
 
@@ -86,7 +86,7 @@ class DynamicFormController extends Controller
             'name'         => 'required|string|max:181',
             'description'  => 'nullable|string',
             'data_type'    => 'required|in:integer,double,text,long_text,boolean,date,0',
-            'parent'       => 'required|number|max:20',
+            'parent'       => 'required|numeric|max:20',
             'required'     => 'required|in:0,1',
             'status'       => 'required|in:0,1'
         ];
