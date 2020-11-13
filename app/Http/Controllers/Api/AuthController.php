@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Notifications\ForgotPassword;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 use Auth;
 
 class AuthController extends Controller
@@ -137,7 +138,7 @@ class AuthController extends Controller
 
                 }
             }else{
-                $message = 'Token Invalid, please request another token in here <br><br><a class="btn btn-sm btn-primary" href="'.route('password-forgot').'">Request new token</a>';
+                $message = 'Token Invalid, please request another token ';
             }
         }else{
             $message= "Token is required";
@@ -191,7 +192,7 @@ class AuthController extends Controller
                 }
             }
         }else{
-            $message = 'Token Invalid, please request another token in here <br><br><a class="btn btn-sm btn-primary" href="'.route('password-forgot').'">Request new token</a>';
+            $message = 'Token Invalid, please request another token';
         }
 
         return response()->json([
