@@ -232,5 +232,6 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'MessageHelper' => App\Helpers\MessageHelper::class,
         'HttpStatus' => App\Enums\HttpStatus::class,
+        'StringHelper' => App\Helpers\StringHelper::class,
     ],
 ];

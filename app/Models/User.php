@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Notifications\ForgotPassword;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -66,4 +67,10 @@ class User extends Authenticatable implements JWTSubject
 
         return response()->json(compact('token'));
     }
+
+    public static function forgotPassword($user)
+    {
+        return $user->notify(new ForgotPassword);
+    }
+
 }
