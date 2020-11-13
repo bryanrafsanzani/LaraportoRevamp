@@ -23,9 +23,9 @@ Route::get('/', function () {
     Route::prefix('/')->group(function () {
 
         Route::prefix('settings')->group(function () {
-            Route::get('/', [SettingController::class, 'index'])->name('setting-index');
-            Route::post('/update', 'SettingController@update')->name('setting-update');
-            Route::delete('/delete/{id}', 'SettingController@delete')->name('setting-delete');
+            Route::get('/', [SettingController::class, 'index'])->middleware('jwt.auth');
+            Route::post('/update', 'SettingController@update')->middleware('jwt.auth');
+            Route::delete('/delete/{id}', 'SettingController@delete')->middleware('jwt.auth');
         });
 
         Route::prefix('/log')->group(function () {
