@@ -58,12 +58,16 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [DynamicFormController::class, 'index']);
             Route::post('/store', [DynamicFormController::class, 'store']);
             Route::get('/view', [DynamicFormController::class, 'view']); //specific data
-            Route::post('/update', [DynamicFormController::class, 'update']); //specific data
-            Route::delete('/delete/{id}', [DynamicFormController::class, 'delete']); //specific data
+            Route::post('/update', [DynamicFormController::class, 'update']);
+            Route::delete('/delete/{id}', [DynamicFormController::class, 'delete']);
         });
 
         Route::prefix('dynamic-fill')->group(function () {
             Route::get('/', [DynamicFillController::class, 'index']);
+            Route::post('/store', [DynamicFillController::class, 'store']);
+            Route::get('/view', [DynamicFillController::class, 'view']); //specific data
+            Route::post('/update', [DynamicFillController::class, 'update']);
+            Route::delete('/delete/{id}', [DynamicFillController::class, 'delete']);
         });
 
         // Route::prefix('sidebar')->group(function () {
