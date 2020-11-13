@@ -78,5 +78,41 @@ class DynamicFormController extends Controller
             ], \HttpStatus::FORBIDDEN);
     }
 
-    public function
+    public function update(Request $request)
+    {
+        $rules     = [
+            'id'           => 'required',
+            'name'         => 'required|string|max:181',
+            'description'  => 'nullable|string',
+            'data_type'    => 'required|in:integer,double,text,long_text,boolean,date,0',
+            'parent'       => 'required|number|max:20',
+            'required'     => 'required|in:0,1',
+            'status'       => 'required|in:0,1'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return  \MessageHelper::unprocessableEntity($validator->messages());
+        }
+
+        $dynamicForm = DynamicForm::find($request->id);
+
+        if($dynamicForm){
+            $dynamicForm->update($request->only('name', 'description', 'data_type', 'parent', 'required', 'status'));
+            return response()->json([
+                "code"      =>  \HttpStatus::OK,
+                "status"    =>  true,
+                "message"   =>  "Success, Data Was Updated!",
+                "data"      =>  null
+            ], \HttpStatus::OK);
+        }
+
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  "Failed, Data not Found",
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
+    }
 }

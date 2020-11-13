@@ -58,6 +58,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [DynamicFormController::class, 'index']);
             Route::post('/store', [DynamicFormController::class, 'store']);
             Route::get('/view', [DynamicFormController::class, 'view']); //specific data
+            Route::post('/update', [DynamicFormController::class, 'update']); //specific data
         });
 
         Route::prefix('dynamic-fill')->group(function () {
