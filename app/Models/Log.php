@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Log extends Model
 {
     use HasFactory;
-    protected $table = "settings";
+    protected $table = "logs";
     protected $primaryKey = "id";
 
     protected $fillable = [
@@ -30,7 +30,7 @@ class Log extends Model
             'ip'        =>  request()->ip(),
             'page'      =>  url()->current(),
             'method'    =>  request()->route()->methods()[0],
-            'route_name'=>  request()->route()->action['as'],
+            // 'route_name'=>  request()->route()->action['as'],
             'data'      =>  $data,
             'access_date'   =>  now()
         ]);

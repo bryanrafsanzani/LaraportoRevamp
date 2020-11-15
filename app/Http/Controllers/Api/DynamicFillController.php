@@ -43,7 +43,7 @@ class DynamicFillController extends Controller
 
         if($check){
             DynamicFill::create($request->all());
-            \App\Models\Log::store('add new Dynamic Fill with value '. $request->value);
+            \LogData::store('add new Dynamic Fill with value '. $request->value);
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
                 "status"    =>  true,
@@ -109,7 +109,7 @@ class DynamicFillController extends Controller
 
         if($dynamicFill){
             $dynamicFill->update($request->only('groups', 'value'));
-            \App\Models\Log::store('Update Dynamic Fill with id='.$request->id);
+            \LogData::store('Update Dynamic Fill with id='.$request->id);
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
                 "status"    =>  true,
@@ -131,7 +131,7 @@ class DynamicFillController extends Controller
         $dynamicFill = DynamicFill::find($id);
 
         if($dynamicFill){
-            \App\Models\Log::store('Delete Dynamic Fill with id='.$dynamicFill->id);
+            \LogData::store('Delete Dynamic Fill with id='.$dynamicFill->id);
             $dynamicFill->delete();
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
