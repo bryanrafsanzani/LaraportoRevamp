@@ -20,4 +20,10 @@ class DynamicFill extends Model
         'created_at',
         'updated_at',
         ];
+
+    public function dynamicForm()
+    {
+        return $this->belongsTo('App\Models\DynamicForm', 'dynamic_form_id');
+    }
+
 }

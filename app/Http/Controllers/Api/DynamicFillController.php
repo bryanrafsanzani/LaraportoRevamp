@@ -72,7 +72,7 @@ class DynamicFillController extends Controller
             return  \MessageHelper::unprocessableEntity($validator->messages());
         }
 
-        $dynamicFill = DynamicFill::find($id);
+        $dynamicFill = DynamicFill::with('dynamicForm')->find($request->id);
         if($dynamicFill){
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
@@ -92,11 +92,56 @@ class DynamicFillController extends Controller
 
     public function update(Request $request)
     {
+        $rules     = [
+            'id'        => 'required',
+            'groups'    => 'required|numeric',
+            'value'     => 'nullable|string',
+        ];
 
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return  \MessageHelper::unprocessableEntity($validator->messages());
+        }
+
+        $dynamicFill = DynamicFill::find($request->id);
+
+        if($dynamicFill){
+            $dynamicFill->update($request->only('groups', 'value'));
+            return response()->json([
+                "code"      =>  \HttpStatus::OK,
+                "status"    =>  true,
+                "message"   =>  "Success, Data Was Updated!",
+                "data"      =>  null
+            ], \HttpStatus::OK);
+        }
+
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  "Failed, Data not Found",
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
     }
 
     public function delete($id)
     {
+        $dynamicFill = DynamicFill::find($id);
 
+        if($dynamicFill){
+            $dynamicFill->delete();
+            return response()->json([
+                "code"      =>  \HttpStatus::OK,
+                "status"    =>  true,
+                "message"   =>  "Success, Data Was Deleted!",
+                "data"      =>  null
+            ], \HttpStatus::OK);
+        }
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  "Failed, Data not Found",
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
     }
 }
