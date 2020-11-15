@@ -61,7 +61,7 @@ class DynamicFormController extends Controller
             return  \MessageHelper::unprocessableEntity($validator->messages());
         }
 
-        $dynamicForm = DynamicForm::find($id);
+        $dynamicForm = DynamicForm::with('dynamicFilled')->find($request->id);
         if($dynamicForm){
             return response()->json([
                 "code"      =>  \HttpStatus::OK,

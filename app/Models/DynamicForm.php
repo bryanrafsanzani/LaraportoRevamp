@@ -23,4 +23,9 @@ class DynamicForm extends Model
         'created_at',
         'updated_at',
         ];
+
+    public function dynamicFilled()
+    {
+        return $this->hasMany('App\Models\DynamicFill', 'dynamic_form_id', 'id');
+    }
 }
