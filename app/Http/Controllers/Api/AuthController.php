@@ -20,6 +20,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         $rules     = [
             'email'         => 'required|string|max:100',
             'password'      => 'required|min:4|max:190',
@@ -35,7 +36,6 @@ class AuthController extends Controller
 
         if($token){
             $user      = \Illuminate\Support\Facades\Auth::user();
-
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
                 "status"    =>  true,
@@ -179,10 +179,10 @@ class AuthController extends Controller
                 if(!$user){
                     $message = 'Account or Token was invalid';
                 }else{
-
                     $user->update(['password'  =>  bcrypt($request->password)]);
                     DB::table('reset_password')->where('token', $request->token)->delete();
 
+                    \App\Models\Log::store('your password was reset');
                     return response()->json([ //after this return, redirect back and post with same url but different method
                         "code"      =>  \HttpStatus::OK,
                         "status"    =>  true,
