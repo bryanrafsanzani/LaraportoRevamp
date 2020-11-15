@@ -9,7 +9,7 @@ class DynamicFill extends Model
 {
     use HasFactory;
 
-    protected $table = "dynamic_forms";
+    protected $table = "dynamic_filled";
     protected $primaryKey = "id";
 
     protected $fillable = [
