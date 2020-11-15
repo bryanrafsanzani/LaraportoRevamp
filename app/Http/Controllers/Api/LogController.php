@@ -55,4 +55,36 @@ class LogController extends Controller
             "data"      =>  $logs
         ], \HttpStatus::OK);
     }
+
+    public function view(Request $request)
+    {
+        $rules     = [
+            'id'   => 'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return  \MessageHelper::unprocessableEntity($validator->messages());
+        }
+
+        $log = Log::find($request->id);
+
+        if($log){
+            return response()->json([
+                "code"      =>  \HttpStatus::OK,
+                "status"    =>  true,
+                "message"   =>  "Success, Data Was Found!",
+                "data"      =>  $log
+            ], \HttpStatus::OK);
+        }
+
+        return response()->json([
+            "code"      =>  \HttpStatus::FORBIDDEN,
+            "status"    =>  false,
+            "message"   =>  "Failed, Data not Found",
+            "data"      =>  null
+            ], \HttpStatus::FORBIDDEN);
+
+    }
 }
