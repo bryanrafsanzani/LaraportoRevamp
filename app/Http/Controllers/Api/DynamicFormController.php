@@ -40,6 +40,7 @@ class DynamicFormController extends Controller
             return  \MessageHelper::unprocessableEntity($validator->messages());
         }
         $dynamicForm = DynamicForm::create($request->all());
+        \App\Models\Log::store('Add new Dynamic Form with id='.$dynamicForm->id);
 
         return response()->json([
             "code"      =>  \HttpStatus::OK,
@@ -101,6 +102,7 @@ class DynamicFormController extends Controller
 
         if($dynamicForm){
             $dynamicForm->update($request->only('name', 'description', 'data_type', 'parent', 'required', 'status'));
+            \App\Models\Log::store('Update Dynamic Form with id='.$request->id);
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
                 "status"    =>  true,
@@ -122,6 +124,7 @@ class DynamicFormController extends Controller
         $dynamicForm = DynamicForm::find($id);
 
         if($dynamicForm){
+            \App\Models\Log::store('Delete Dynamic Form with id='.$dynamicForm->id);
             $dynamicForm->delete();
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
