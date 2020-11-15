@@ -21,5 +21,18 @@ class Log extends Model
         'access_date',
         'created_at',
         'updated_at',
-        ];
+    ];
+
+    public static function store($data = "")
+    {
+
+        return self::create([
+            'ip'        =>  request()->ip(),
+            'page'      =>  url()->current(),
+            'method'    =>  request()->route()->methods()[0],
+            'route_name'=>  request()->route()->action['as'],
+            'data'      =>  $data,
+            'access_date'   =>  now()
+        ]);
+    }
 }
