@@ -182,7 +182,7 @@ class AuthController extends Controller
                     $user->update(['password'  =>  bcrypt($request->password)]);
                     DB::table('reset_password')->where('token', $request->token)->delete();
 
-                    \App\Models\Log::store('your password was reset');
+                    \LogData::store('your password was reset');
                     return response()->json([ //after this return, redirect back and post with same url but different method
                         "code"      =>  \HttpStatus::OK,
                         "status"    =>  true,
