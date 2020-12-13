@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\AuthController,
     App\Http\Controllers\Api\MediaController,
     App\Http\Controllers\Api\DynamicFormController,
     App\Http\Controllers\Api\DynamicFillController,
+    App\Http\Controllers\Api\MenuController,
     App\Http\Controllers\Api\LogController;
 /*
 |--------------------------------------------------------------------------
@@ -20,24 +21,32 @@ use App\Http\Controllers\Api\AuthController,
 |
 */
 
-
 Route::prefix('v1')->group(function () {
 
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::prefix('menu')->group(function () {
+        Route::get('/', [MenuController::class, 'index']);
+    });
+
+    Route::post('/login', [AuthController::class, 'login'])->name('api-login');
+    Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('api-forgot-password');
     Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('api-reset-password');
-    Route::post('/reset-password', [AuthController::class, 'submitResetPassword']);
+    Route::post('/reset-password', [AuthController::class, 'submitResetPassword'])->name('api-submit-reset-password');
 
     Route::middleware(['jwt.verify'])->group(function () {
-        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/logout', [AuthController::class, 'logout'])->name('api-logout');
 
         Route::prefix('dashboard')->group(function () {
-            Route::get('/', [DashboardController::class, 'index']);
+            Route::get('/', [DashboardController::class, 'index'])->name('api-dashboard-index');
         });
 
         Route::prefix('log')->group(function () {
             Route::get('/', [LogController::class, 'index']);
+            Route::get('/view', [LogController::class, 'view']);
         });
+
+        // Route::prefix('menu')->group(function () {
+        //     Route::get('/', [MenuController::class, 'index']);
+        // });
 
         Route::prefix('setting')->group(function () { //Done
             Route::get('/', [SettingController::class, 'index']);
