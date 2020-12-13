@@ -23,7 +23,7 @@ Route::get('/', function () {
     Route::prefix('/')->group(function () {
 
         Route::prefix('settings')->group(function () {
-            Route::get('/', [SettingController::class, 'index'])->middleware('jwt.auth');
+            Route::get('/', [SettingController::class, 'index'])->middleware('jwt.auth')->name('setting-index');
             Route::post('/update', 'SettingController@update')->middleware('jwt.auth');
             Route::delete('/delete/{id}', 'SettingController@delete')->middleware('jwt.auth');
         });
