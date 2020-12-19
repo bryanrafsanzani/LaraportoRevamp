@@ -59,7 +59,11 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [MediaController::class, 'index']);
 
             Route::prefix('upload')->group(function () {
-                //not yet
+                Route::post('/store', [MediaController::class, 'store']);
+                Route::post('/edit/{id}', [MediaController::class, 'edit']);
+                Route::post('/update/{id}', [MediaController::class, 'update']);
+                Route::post('/delete/{id}', [MediaController::class, 'delete']);
+
             });
         });
 
