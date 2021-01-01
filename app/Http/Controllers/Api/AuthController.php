@@ -73,7 +73,7 @@ class AuthController extends Controller
             $token = \StringHelper::generateRandomString(128);
             $check->token = $token;
 
-            // User::forgotPassword($check); //send email forgot password
+            User::forgotPassword($check); //send email forgot password
 
                 DB::table('reset_password')->insert([
                     'email' => $request->email,

@@ -36,13 +36,13 @@ class ForgotPassword extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+    * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        ->line('Here link for reset your password <br> <a href="'.route('api-reset-password').'?token='.$token.'"></a>');
-        // ->action('Notification Action', url('/'));
+        ->line('Here link for reset your password')
+        ->action('Reset Password', route('api-reset-password').'?token='.$notifiable->token);
         // ->line('Link only can use for 30 Minutes');
     }
 
