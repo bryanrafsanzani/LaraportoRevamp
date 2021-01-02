@@ -80,7 +80,6 @@ class AuthController extends Controller
                     'token' => $token
                 ]);
 
-
             return response()->json([
                 "code"      =>  \HttpStatus::OK,
                 "status"    =>  true,
@@ -97,8 +96,6 @@ class AuthController extends Controller
             "message"   =>  "Failed, Email not Found!",
             "data"      =>  null
             ], \HttpStatus::FORBIDDEN);
-
-
     }
 
     public function resetPassword(Request $request)
@@ -143,7 +140,6 @@ class AuthController extends Controller
         }else{
             $message= "Token is required";
         }
-
         return response()->json([
             "code"      =>  \HttpStatus::FORBIDDEN,
             "status"    =>  false,
@@ -205,9 +201,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-
         \JWTAuth::invalidate($request->header('Authorization'));
-
         return response()->json([
             "code"      =>  \HttpStatus::OK,
             "status"    =>  true,

@@ -10,16 +10,6 @@ use App\Http\Controllers\Api\AuthController,
     App\Http\Controllers\Api\DynamicFillController,
     App\Http\Controllers\Api\MenuController,
     App\Http\Controllers\Api\LogController;
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::prefix('v1')->group(function () {
 
@@ -43,10 +33,6 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [LogController::class, 'index']);
             Route::get('/view', [LogController::class, 'view']);
         });
-
-        // Route::prefix('menu')->group(function () {
-        //     Route::get('/', [MenuController::class, 'index']);
-        // });
 
         Route::prefix('setting')->group(function () { //Done
             Route::get('/', [SettingController::class, 'index']);
@@ -82,10 +68,6 @@ Route::prefix('v1')->group(function () {
             Route::post('/update', [DynamicFillController::class, 'update']);
             Route::delete('/delete/{id}', [DynamicFillController::class, 'delete']);
         });
-
-        // Route::prefix('sidebar')->group(function () {
-        //     Route::get('/login', 'Api\Mobile\AuthController@login');
-        // });
 
     });
 
