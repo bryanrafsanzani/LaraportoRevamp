@@ -10,6 +10,11 @@ use Carbon\Carbon;
 
 class LogController extends Controller
 {
+    public function __construt()
+    {
+        $this->middleware('jwt.verify');
+    }
+
     public function index(Request $request, $logs = null, $filter = null)
     {
         if($request->has('filter')){

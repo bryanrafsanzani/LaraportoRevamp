@@ -8,6 +8,11 @@ use App\Models\Menu;
 
 class MenuController extends Controller
 {
+    public function __construt()
+    {
+        $this->middleware('jwt.verify');
+    }
+
     public function index($results = [])
     {
 
