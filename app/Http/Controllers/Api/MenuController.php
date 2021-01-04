@@ -15,9 +15,7 @@ class MenuController extends Controller
 
     public function index($results = [])
     {
-
         return $this->tree();
-
     }
 
      // develop
