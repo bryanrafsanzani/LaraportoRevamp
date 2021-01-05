@@ -11,4 +11,14 @@ class MediaController extends Controller
     {
         $this->middleware('jwt.verify');
     }
+
+    public function index()
+    {
+
+    }
+
+    public function detail()
+    {
+
+    }
 }
