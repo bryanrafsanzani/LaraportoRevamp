@@ -37,9 +37,7 @@ class SettingController extends Controller
             return  \MessageHelper::unprocessableEntity($validator->messages());
         }
 
-
         foreach(Setting::All() as $keyParent => $setting){
-
             foreach($request->settings as $keyChild => $value){
 
                 if($setting->option_name === $keyChild){

@@ -51,11 +51,9 @@ class MenuController extends Controller
                      --test 0--
                      </div>
                  </div>';
-
              if(sizeof($subParents)<=0){
                  $result .= '</li>';
              }
-
          }
 
          if(sizeof($subParents)>0){
@@ -79,19 +77,14 @@ class MenuController extends Controller
 
                  $subsubParent = Menu::where('prn', $ss->id)->orderBy('sort', 'asc')->get();
                  if(sizeOf($menu)>0){
-
                      $level +=1;
                      $result .= $this->dataIndexChild($ss->id, $level);
                      $result .= '</li>';
-
                  }
-
              }
              $result .= ' </ol>';
          }
-
          return $result;
-
      }
     // batas develop
 }
