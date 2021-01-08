@@ -57,7 +57,6 @@ class DynamicFormController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules);
-
         if ($validator->fails()) {
             return  \MessageHelper::unprocessableEntity($validator->messages());
         }
