@@ -234,5 +234,6 @@ return [
         'HttpStatus' => App\Enums\HttpStatus::class,
         'StringHelper' => App\Helpers\StringHelper::class,
         'LogData' => App\Models\Log::class
+
     ],
 ];
