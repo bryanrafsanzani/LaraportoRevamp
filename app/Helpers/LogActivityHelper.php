@@ -14,8 +14,7 @@ class LogActivityHelper
         $array['route_name']   = Route::currentRouteName();
         $array['data']         = $msg;
         $array['access_date']  = now();
+
         return $array;
     }
-
-
 }
