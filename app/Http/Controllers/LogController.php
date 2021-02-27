@@ -7,11 +7,6 @@ use DataTables;
 
 class LogController extends Controller
 {
-    public function index(Request $request)
-    {
-
-
-    }
 
     public function datatables()
     {
