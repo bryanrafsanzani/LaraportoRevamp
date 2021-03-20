@@ -17,17 +17,17 @@ class MediaController extends Controller
 
     }
 
-    public function detail()
+    public function detail($id)
     {
 
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
 
     }
 
-    public function delete()
+    public function delete($id)
     {
 
     }
