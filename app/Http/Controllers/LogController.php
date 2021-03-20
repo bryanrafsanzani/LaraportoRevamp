@@ -19,4 +19,24 @@ class LogController extends Controller
         // ->rawColumns(['action'])
             ->make(true);
     }
+
+    public function index()
+    {
+
+    }
+
+    public function edit($id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function delete($Id)
+    {
+
+    }
 }
