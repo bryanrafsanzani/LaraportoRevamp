@@ -16,7 +16,6 @@ class LogController extends Controller
                 function ($data){
                     return '$data->name;';
             })
-        // ->rawColumns(['action'])
             ->make(true);
     }
 
